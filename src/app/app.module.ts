@@ -5,10 +5,12 @@ import { HttpModule } from '@angular/http';
 import { ChartModule } from 'angular2-highcharts';
 import { D3Service } from 'd3-ng2-service';
 import { AppComponent } from './app.component';
+import { BrushZoomComponent } from './brush-zoom/brush-zoom.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BrushZoomComponent
   ],
   imports: [
     BrowserModule,
