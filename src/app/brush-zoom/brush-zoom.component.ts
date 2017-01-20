@@ -1,7 +1,5 @@
 
 import { Component, ElementRef, NgZone, OnDestroy, OnInit } from '@angular/core';
-
-
 import {
   D3Service,
   D3,

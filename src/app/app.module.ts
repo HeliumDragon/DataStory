@@ -6,11 +6,13 @@ import { ChartModule } from 'angular2-highcharts';
 import { D3Service } from 'd3-ng2-service';
 import { AppComponent } from './app.component';
 import { BrushZoomComponent } from './brush-zoom/brush-zoom.component';
+import { ColumnChartComponent } from './column-chart/column-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BrushZoomComponent
+    BrushZoomComponent,
+    ColumnChartComponent
   ],
   imports: [
     BrowserModule,
