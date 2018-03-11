@@ -9,8 +9,7 @@ import { NavItemComponent } from './components/nav-item';
 import { SidenavComponent } from './components/sidenav';
 import { ToolbarComponent } from './components/toolbar';
 import { MaterialModule } from '../material';
-
-import { GoogleBooksService } from './services/google-books';
+import { MovieService } from './services/movies.service';
 
 export const COMPONENTS = [
   AppComponent,
@@ -30,7 +29,7 @@ export class CoreModule {
   static forRoot() {
     return {
       ngModule: CoreModule,
-      providers: [GoogleBooksService],
+      providers: [MovieService],
     };
   }
 }

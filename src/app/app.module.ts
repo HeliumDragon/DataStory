@@ -27,7 +27,6 @@ import { routes } from './routes';
 import { reducers, metaReducers } from './reducers';
 import { schema } from './db';
 import { CustomRouterStateSerializer } from './shared/utils';
-
 import { environment } from '../environments/environment';
 
 
@@ -75,7 +74,7 @@ import { environment } from '../environments/environment';
      * See: https://github.com/zalmoxisus/redux-devtools-extension
      */
     StoreDevtoolsModule.instrument({
-      name: 'NgRx Book Store DevTools',
+      name: 'NgRx Movie Store DevTools',
       logOnly: environment.production,
     }),
 
