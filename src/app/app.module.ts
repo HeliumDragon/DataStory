@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { D3Service } from 'd3-ng2-service';
-import { AppComponent } from './app.component';
+import { AppComponent } from './core/containers/app';
 import { BrushZoomComponent } from './brush-zoom/brush-zoom.component';
 import { ColumnChartComponent } from './column-chart/column-chart.component';
 
@@ -33,7 +33,6 @@ import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
-    AppComponent,
     BrushZoomComponent,
     ColumnChartComponent
   ],
