@@ -9,6 +9,10 @@ import { MovieEffects } from './effects/movie';
 import { MovieExistsGuard } from './guards/movie-exists';
 
 import { FindMoviePageComponent } from './containers/find-movie-page';
+import { ViewMoviePageComponent } from './containers/view-movie-page';
+import { SelectedMoviePageComponent } from './containers/selected-movie-page';
+
+
 import { MaterialModule } from '../material';
 
 import { reducers } from './reducers';
@@ -19,6 +23,11 @@ import { reducers } from './reducers';
     MaterialModule,
     ComponentsModule,
     RouterModule.forChild([
+      {
+        path: ':id',
+        component: ViewMoviePageComponent,
+        canActivate: [MovieExistsGuard],
+      },
       { path: 'find', component: FindMoviePageComponent },
       { path: '', component: FindMoviePageComponent },
     ]),
@@ -42,7 +51,9 @@ import { reducers } from './reducers';
     EffectsModule.forFeature([MovieEffects]),
   ],
   declarations: [
-    FindMoviePageComponent
+    FindMoviePageComponent,
+    ViewMoviePageComponent,
+    SelectedMoviePageComponent
   ],
   providers: [MovieExistsGuard],
 })
