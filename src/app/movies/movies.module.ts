@@ -29,7 +29,7 @@ import { reducers } from './reducers';
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature('books', reducers),
+    StoreModule.forFeature('movies', reducers),
 
     /**
      * Effects.forFeature is used to register effects

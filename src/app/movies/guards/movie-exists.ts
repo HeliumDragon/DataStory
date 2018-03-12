@@ -28,7 +28,7 @@ export class MovieExistsGuard implements CanActivate {
    */
   hasMovieInStore(id: string): Observable<boolean> {
     return this.store.pipe(
-      select(fromMovies.getBookEntities),
+      select(fromMovies.getMovieEntities),
       map(entities => !!entities[id]),
       take(1)
     );

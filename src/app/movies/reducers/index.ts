@@ -41,7 +41,7 @@ export const reducers: ActionReducerMap<MovieState> = {
  * The createFeatureSelector function selects a piece of state from the root of the state object.
  * This is used for selecting feature states that are loaded eagerly or lazily.
  */
-export const getBooksState = createFeatureSelector<MovieState>('books');
+export const getMoviesState = createFeatureSelector<MovieState>('movies');
 
 /**
  * Every reducer module exports selector functions, however child reducers
@@ -52,13 +52,13 @@ export const getBooksState = createFeatureSelector<MovieState>('books');
  * only recompute when arguments change. The created selectors can also be composed
  * together to select different pieces of state.
  */
-export const getBookEntitiesState = createSelector(
-  getBooksState,
+export const getMovieEntitiesState = createSelector(
+  getMoviesState,
   state => state.movies
 );
 
-export const getSelectedBookId = createSelector(
-  getBookEntitiesState,
+export const getSelectedMovieId = createSelector(
+  getMovieEntitiesState,
   fromMovies.getSelectedId
 );
 
@@ -71,15 +71,15 @@ export const getSelectedBookId = createSelector(
  * in selecting records from the entity state.
  */
 export const {
-  selectIds: getBookIds,
-  selectEntities: getBookEntities,
-  selectAll: getAllBooks,
-  selectTotal: getTotalBooks,
-} = fromMovies.adapter.getSelectors(getBookEntitiesState);
+  selectIds: getMovieIds,
+  selectEntities: getMovieEntities,
+  selectAll: getAllMovies,
+  selectTotal: getTotalMovies,
+} = fromMovies.adapter.getSelectors(getMovieEntitiesState);
 
-export const getSelectedBook = createSelector(
-  getBookEntities,
-  getSelectedBookId,
+export const getSelectedMovie= createSelector(
+  getMovieEntities,
+  getSelectedMovieId,
   (entities, selectedId) => {
     return selectedId && entities[selectedId];
   }
@@ -90,11 +90,11 @@ export const getSelectedBook = createSelector(
  * reducer's and collection reducer's selectors.
  */
 export const getSearchState = createSelector(
-  getBooksState,
+  getMoviesState,
   (state: MovieState) => state.search
 );
 
-export const getSearchBookIds = createSelector(
+export const getSearchMovieIds = createSelector(
   getSearchState,
   fromSearch.getIds
 );
@@ -116,8 +116,8 @@ export const getSearchError = createSelector(
  * composes the search result IDs to return an array of books in the store.
  */
 export const getSearchResults = createSelector(
-  getBookEntities,
-  getSearchBookIds,
+  getMovieEntities,
+  getSearchMovieIds,
   (books, searchIds) => {
     return searchIds.map(id => books[id]);
   }

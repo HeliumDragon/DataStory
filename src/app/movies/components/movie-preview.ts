@@ -4,7 +4,7 @@ import { Movie } from '../models/movie';
 @Component({
   selector: 'ds-movie-preview',
   template: `
-    <a [routerLink]="['/books', id]">
+    <a [routerLink]="['/movies', id]">
       <mat-card>
         <mat-card-title-group>
           <img mat-card-sm-image *ngIf="thumbnail" [src]="thumbnail"/>
@@ -78,6 +78,10 @@ import { Movie } from '../models/movie';
 export class MoviePreviewComponent {
   @Input() movie: Movie;
 
+  get id() {
+    return this.movie.id;
+  }
+  
   get title() {
     return this.movie.title;
   }
