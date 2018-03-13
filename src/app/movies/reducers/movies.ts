@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Movie } from '../models/movie';
-import { BookActions, BookActionTypes } from '../actions/movie';
+import { MovieActions, MovieActionTypes } from '../actions/movie';
 
 /**
  * @ngrx/entity provides a predefined interface for handling
@@ -38,18 +38,18 @@ export const initialState: State = adapter.getInitialState({
 
 export function reducer(
   state = initialState,
-  action: BookActions
+  action: MovieActions
 ): State {
   switch (action.type) {
     
-    case BookActionTypes.SearchComplete: {
+    case MovieActionTypes.SearchComplete: {
       return adapter.addMany(action.payload, {
         ...state,
         selectedMovieId: state.selectedMovieId
       })
     }
 
-    case BookActionTypes.Load: {
+    case MovieActionTypes.Load: {
       /**
        * The addOne function provided by the created adapter
        * adds one record to the entity dictionary
@@ -63,7 +63,7 @@ export function reducer(
       });
     }
 
-    case BookActionTypes.Select: {
+    case MovieActionTypes.Select: {
       return {
         ...state,
         selectedMovieId: action.payload,

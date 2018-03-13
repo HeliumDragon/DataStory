@@ -9,8 +9,8 @@ import { of } from 'rxjs/observable/of';
 import { MovieService } from '../../core/services/movies.service';
 
 import {
-  BookActionTypes,
-  BookActions,
+  MovieActionTypes,
+  MovieActions,
   SearchComplete,
   SearchError,
   Search,
@@ -45,7 +45,7 @@ export const SEARCH_SCHEDULER = new InjectionToken<Scheduler>(
 export class MovieEffects {
   @Effect()
   search$: Observable<Action> = this.actions$.pipe(
-    ofType<Search>(BookActionTypes.Search),
+    ofType<Search>(MovieActionTypes.Search),
     debounceTime(this.debounce || 300, this.scheduler || async),
     map(action => action.payload),
     switchMap(query => {
@@ -54,7 +54,7 @@ export class MovieEffects {
       }
 
       const nextSearch$ = this.actions$.pipe(
-        ofType(BookActionTypes.Search),
+        ofType(MovieActionTypes.Search),
         skip(1)
       );
 
