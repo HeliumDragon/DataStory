@@ -12,6 +12,7 @@ import { Movie } from '../models/movie';
   selector: 'bc-find-book-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
+    <ds-movie-bubble></ds-movie-bubble>  
     <ds-movie-search [query]="searchQuery$ | async" [searching]="loading$ | async" [error]="error$ | async" (search)="search($event)"></ds-movie-search>
     <ds-movie-preview-list [movies]="movies$ | async"></ds-movie-preview-list>
   `,
