@@ -41,7 +41,7 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, { useHash: true }),
+    RouterModule.forRoot(routes),
 
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
