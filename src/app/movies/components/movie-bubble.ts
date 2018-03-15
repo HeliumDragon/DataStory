@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit, AfterViewInit, OnDestroy, ElementRef, ViewChild, OnChanges } from '@angular/core';
-import { schema, data } from '../models/movieBubble'
+import { schema, data } from '../../../data/movieBubbleData'
 
 @Component({
   selector: 'ds-movie-bubble',
