@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from './auth/services/auth-guard.service';
+// import { AuthGuard } from './auth/services/auth-guard.service';
 import { NotFoundPageComponent } from './core/containers/not-found-page';
 
 export const routes: Routes = [
@@ -7,7 +7,7 @@ export const routes: Routes = [
   {
     path: 'movies',
     loadChildren: './movies/movies.module#MoviesModule',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   { path: '**', component: NotFoundPageComponent },
 ];
