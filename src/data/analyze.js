@@ -5,9 +5,10 @@ const allMovies = JSON.parse(fs.readFileSync('moviedata.json', 'utf8'));
 const uniqueGenres = getUniqueGenres(allMovies)
 const goodMovies = allMovies.filter(o => {
   let topRanking = o.info.rank < allMovies.length * 0.15
-  let highlyRated = o.info.rating > 7
-  let validData = o.year && o.info.rating && o.info.rank && o.info.plot
-  return topRanking && highlyRated && validData
+  let highlyRated = o.info.rating >= 7
+  let from90s = o.year >= 1990
+  let validData = o.year && o.info.rating && o.info.rank && o.info.plot 
+  return topRanking && highlyRated && validData && from90s
 })
 const goodIndieMovies = allMovies.filter(o => {
   let topTenPercent = o.info.rank < allMovies.length * 0.1
