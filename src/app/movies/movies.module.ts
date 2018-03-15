@@ -11,7 +11,7 @@ import { MovieExistsGuard } from './guards/movie-exists';
 import { FindMoviePageComponent } from './containers/find-movie-page';
 import { ViewMoviePageComponent } from './containers/view-movie-page';
 import { SelectedMoviePageComponent } from './containers/selected-movie-page';
-
+import { MovieChartsPageComponent } from './containers/movie-charts-page';
 
 import { MaterialModule } from '../material';
 
@@ -29,7 +29,7 @@ import { reducers } from './reducers';
         canActivate: [MovieExistsGuard],
       },
       { path: 'find', component: FindMoviePageComponent },
-      { path: '', component: FindMoviePageComponent },
+      { path: '', component: MovieChartsPageComponent },
     ]),
 
     /**
@@ -53,7 +53,8 @@ import { reducers } from './reducers';
   declarations: [
     FindMoviePageComponent,
     ViewMoviePageComponent,
-    SelectedMoviePageComponent
+    SelectedMoviePageComponent,
+    MovieChartsPageComponent
   ],
   providers: [MovieExistsGuard],
 })
