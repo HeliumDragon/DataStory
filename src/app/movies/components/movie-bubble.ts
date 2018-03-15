@@ -1,10 +1,14 @@
 import { Component, Input, Output, EventEmitter, OnInit, AfterViewInit, OnDestroy, ElementRef, ViewChild, OnChanges } from '@angular/core';
 import { schema, data } from '../../../data/movieBubbleData'
-
+import * as moment from 'moment'
 @Component({
   selector: 'ds-movie-bubble',
   template: `
-    <div [ds-chart]="options" #bubble style="min-width: 600px;min-height:400px;"></div>
+  <mat-card>
+    <mat-card-content>
+      <div [ds-chart]="options" #bubble style="min-width: 750px;min-height:500px;"></div>
+    </mat-card-content>
+  </mat-card>
   `,
   styles: [`
   `]
@@ -21,6 +25,7 @@ export class MovieBubbleComponent implements OnInit {
     const dataComedy = data.comedy
     const dataAdventure = data.adventure
     const dataCrime = data.crime
+
     const itemStyle = {
       normal: {
         opacity: 0.8,
@@ -30,13 +35,23 @@ export class MovieBubbleComponent implements OnInit {
         shadowColor: 'rgba(0, 0, 0, 0.5)'
       }
     };
+
     this.options = {
-      backgroundColor: '#404a59',
+      title: {
+        show: true, 
+        text: 'Top Movies by Genres Scatter (1990-2013)',
+        left: 'center',
+        top: 20,
+        textStyle: {
+          color: '#fff',
+        }
+      },
+      backgroundColor: 'rgba(63,81,181, 0.5)',
       color: [
         '#dd4444', '#fec42c', '#80F1BE', 'purple', 'black'
       ],
       legend: {
-        y: 'top',
+        y: 60,
         data: ['Drama', 'Action', 'Comedy', 'Adventure', 'Crime'],
         textStyle: {
           color: '#fff',
@@ -44,9 +59,9 @@ export class MovieBubbleComponent implements OnInit {
         }
       },
       grid: {
-        x: '10%',
+        x: '5%',
         x2: 150,
-        y: '18%',
+        y: '15%',
         y2: '10%'
       },
       tooltip: {
@@ -56,16 +71,18 @@ export class MovieBubbleComponent implements OnInit {
         borderWidth: 1,
         formatter: function (obj) {
           var value = obj.value;
-          return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
-            + value[5]
-            + '</div>'
-            + value[7]
-            + schema[1].text + '：' + value[1] + '<br>'
-            + schema[2].text + '：' + value[2] + '<br>'
-            + schema[3].text + '：' + value[3] + '<br>'
-            + schema[4].text + '：' + value[4] + '<br>'
-            + schema[5].text + '：' + value[5] + '<br>'
-            + schema[6].text + '：' + value[6] + '<br>';
+          return `
+            <div style="font-size:15px; padding-bottom: 7px;margin-bottom: 7px">
+              <h1 style="font-size:18px;">${value[5]}:  ${value[1]}</h1>
+              <div class="margin-bottom-1em"> 
+                <i style="font-size:15px;" class="material-icons">theaters</i> <span>${moment.duration(value[2], 'seconds').humanize()} <span>
+                <i style="font-size:15px;" class="material-icons">date_range</i> ${moment(value[4]).format('MMMM Do YYYY')}
+              </div>
+              <div class="margin-bottom-1em"> ${value[6]} </div>    
+              <div class="margin-bottom-1em"> Directed By: ${value[10]} </div>                                                                  
+              <div> Acted By: ${value[9]} </div>                            
+            </div>
+          `
         }
       },
       xAxis: {
@@ -76,7 +93,7 @@ export class MovieBubbleComponent implements OnInit {
           color: '#fff',
           fontSize: 14
         },
-        min: 1964,
+        min: 1990,
         max: 2014,
         splitLine: {
           show: false
@@ -92,7 +109,7 @@ export class MovieBubbleComponent implements OnInit {
         name: 'rating',
         nameLocation: 'end',
         nameGap: 20,
-        min: 6.8,
+        min: 7,
         max: 10,
         nameTextStyle: {
           color: '#fff',
@@ -115,10 +132,10 @@ export class MovieBubbleComponent implements OnInit {
           min: 3500,
           max: 12000,
           itemWidth: 30,
-          itemHeight: 120,
+          itemHeight: 320,
           calculable: true,
           precision: 0.1,
-          text: ['Bubble Size：running time'],
+          text: ['Radius: time (s)'],
           textGap: 30,
           textStyle: {
             color: '#fff'
