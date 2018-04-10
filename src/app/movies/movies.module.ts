@@ -1,21 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
 
-import { ComponentsModule } from './components';
-import { MovieEffects } from './effects/movie';
-import { MovieExistsGuard } from './guards/movie-exists';
+import { ComponentsModule } from "./components";
+import { MovieEffects } from "./effects/movie";
+import { MovieExistsGuard } from "./guards/movie-exists";
 
-import { FindMoviePageComponent } from './containers/find-movie-page';
-import { ViewMoviePageComponent } from './containers/view-movie-page';
-import { SelectedMoviePageComponent } from './containers/selected-movie-page';
+import { FindMoviePageComponent } from "./containers/find-movie-page";
+import { ViewMoviePageComponent } from "./containers/view-movie-page";
+import { SelectedMoviePageComponent } from "./containers/selected-movie-page";
+import { MovieChartsPageComponent } from "./containers/movie-charts-page";
 
+import { MaterialModule } from "../material";
 
-import { MaterialModule } from '../material';
-
-import { reducers } from './reducers';
+import { reducers } from "./reducers";
 
 @NgModule({
   imports: [
@@ -24,12 +24,12 @@ import { reducers } from './reducers';
     ComponentsModule,
     RouterModule.forChild([
       {
-        path: ':id',
+        path: ":id",
         component: ViewMoviePageComponent,
-        canActivate: [MovieExistsGuard],
+        canActivate: [MovieExistsGuard]
       },
-      { path: 'find', component: FindMoviePageComponent },
-      { path: '', component: FindMoviePageComponent },
+      { path: "find", component: FindMoviePageComponent },
+      { path: "", component: MovieChartsPageComponent }
     ]),
 
     /**
@@ -38,7 +38,7 @@ import { reducers } from './reducers';
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature('movies', reducers),
+    StoreModule.forFeature("movies", reducers),
 
     /**
      * Effects.forFeature is used to register effects
@@ -48,13 +48,14 @@ import { reducers } from './reducers';
      * All Effects will only be instantiated once regardless of
      * whether they are registered once or multiple times.
      */
-    EffectsModule.forFeature([MovieEffects]),
+    EffectsModule.forFeature([MovieEffects])
   ],
   declarations: [
     FindMoviePageComponent,
     ViewMoviePageComponent,
-    SelectedMoviePageComponent
+    SelectedMoviePageComponent,
+    MovieChartsPageComponent
   ],
-  providers: [MovieExistsGuard],
+  providers: [MovieExistsGuard]
 })
-export class MoviesModule { }
+export class MoviesModule {}

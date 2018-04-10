@@ -12,24 +12,9 @@ import * as Auth from '../../auth/actions/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <bc-layout>
-      <bc-sidenav [open]="showSidenav$ | async">
-        <bc-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn$ | async" routerLink="/" icon="movie" hint="View your movie collection">
-          My Collection
-        </bc-nav-item>
-        <bc-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn$ | async" routerLink="/movies/find" icon="search" hint="Find your next movie!">
-          Browse Movies
-        </bc-nav-item>
-        <bc-nav-item (navigate)="closeSidenav()" *ngIf="!(loggedIn$ | async)">
-          Sign In
-        </bc-nav-item>
-        <bc-nav-item (navigate)="logout()" *ngIf="loggedIn$ | async">
-          Sign Out
-        </bc-nav-item>
-      </bc-sidenav>
-      <bc-toolbar (openMenu)="openSidenav()">
-        Movie Collection
+      <bc-toolbar>
+        Movie Charts
       </bc-toolbar>
-
       <router-outlet></router-outlet>
     </bc-layout>
   `,
